@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(120deg, #3db28c, #1e88e5);
+    animation: gradientMove 12s ease infinite;
+    overflow-x: hidden;
+  }
+  
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  button {
+    transition: all 0.3s ease;
+  }
+  
