@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: '#2d6a4f', // Darker green to distinguish it from the body
+        backgroundColor: '#2d6a4f', 
         color: '#fff',
         py: 4,
         textAlign: 'center',
@@ -14,7 +14,7 @@ const Footer = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderTop: '5px solid #1e4e2b', // Add a subtle top border for added distinction
+        borderTop: '5px solid #1e4e2b', 
       }}
     >
       <Typography
@@ -26,7 +26,7 @@ const Footer = () => {
           letterSpacing: '0.5px',
           mb: 2,
           fontFamily: "'Poppins', sans-serif",
-          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.4)', // Subtle text shadow for emphasis
+          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.4)', 
         }}
       >
         © 2024 HEALTHNEXUS. Your health, our priority.
@@ -41,7 +41,7 @@ const Footer = () => {
             color: '#fff',
             fontSize: '24px',
             transition: 'all 0.3s',
-            '&:hover': { color: '#48c78e' }, // Hover effect with a light green
+            '&:hover': { color: '#48c78e' }, 
           }}
         >
           <Facebook />
@@ -84,7 +84,6 @@ const Footer = () => {
         </Link>
       </Box>
 
-      {/* Optional: Privacy Policy or other links */}
       <Box sx={{ mt: 2 }}>
         <Link
           href="#"

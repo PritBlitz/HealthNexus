@@ -20,13 +20,13 @@ const UploadPage = () => {
         flexDirection: 'column',
         justifyContent: 'space-between',
         // Health-themed gradient background
-        background: 'linear-gradient(135deg, #48c78e, #3cb371)', // Health green gradient
+        background: 'linear-gradient(135deg, #48c78e, #3cb371)',
         overflow: 'hidden',
       }}
     >
       <Header />
 
-      {/* HealthNexus Description Section */}
+    
       <Box
         sx={{
           textAlign: 'center',
@@ -43,13 +43,13 @@ const UploadPage = () => {
           <Typography
             variant="h3"
             sx={{
-              color: '#ffffff', // White text for readability
+              color: '#ffffff', 
               fontWeight: 'bold',
-              fontFamily: "'Poppins', sans-serif", // Modern font
-              fontSize: '2.5rem', // Larger size for title
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: '2.5rem', 
               lineHeight: '1.5',
-              textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)', // Subtle text shadow for emphasis
-              letterSpacing: '2px', // Spacing to make text more open and readable
+              textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)', 
+              letterSpacing: '2px', 
             }}
           >
             Welcome to HealthNexus
@@ -58,8 +58,8 @@ const UploadPage = () => {
           <Typography
             variant="body1"
             sx={{
-              color: '#e0f7fa', // Light cyan to match the health theme
-              fontFamily: "'Lato', sans-serif", // Lato for the description text
+              color: '#e0f7fa', 
+              fontFamily: "'Lato', sans-serif", 
               fontSize: '1.1rem',
               mt: 3,
               lineHeight: '1.8',
@@ -68,7 +68,7 @@ const UploadPage = () => {
               textAlign: 'center',
               fontStyle: 'italic',
               fontWeight: '300',
-              letterSpacing: '1px', // Added letter spacing for improved readability
+              letterSpacing: '1px', 
             }}
           >
             HealthNexus is built on cutting-edge technology designed to help detect early health issues,
@@ -79,7 +79,7 @@ const UploadPage = () => {
         </motion.div>
       </Box>
 
-      {/* Image Upload Section */}
+    
       <Box
         sx={{
           flex: 1,
@@ -100,9 +100,9 @@ const UploadPage = () => {
               variant="h4"
               sx={{
                 mb: 4,
-                color: '#006400', // Dark green for heading
+                color: '#006400', 
                 fontWeight: 'bold',
-                fontFamily: "'Poppins', sans-serif", // Consistent font style
+                fontFamily: "'Poppins', sans-serif", 
               }}
             >
               Your Uploaded Image
@@ -114,8 +114,8 @@ const UploadPage = () => {
                 width: '100%',
                 maxWidth: '400px',
                 borderRadius: '10px',
-                border: '3px solid #48c78e', // Green border
-                boxShadow: '0px 6px 12px rgba(48, 147, 106, 0.5)', // Greenish shadow
+                border: '3px solid #48c78e', 
+                boxShadow: '0px 6px 12px rgba(48, 147, 106, 0.5)', 
               }}
             />
           </motion.div>
