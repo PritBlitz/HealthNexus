@@ -1,8 +1,23 @@
-import React from 'react';
-import UploadPage from './pages/UploadPage';
+import React, { useState } from "react";
+import SplinePage from "./pages/SplinePage";
+import UploadPage from "./pages/UploadPage";
 
 const App = () => {
-  return <UploadPage />;
+  const [showUploadPage, setShowUploadPage] = useState(false);
+
+  const handleScreenClick = () => {
+    setShowUploadPage(true);
+  };
+
+  return (
+    <>
+      {showUploadPage ? (
+        <UploadPage />
+      ) : (
+        <SplinePage onScreenClick={handleScreenClick} />
+      )}
+    </>
+  );
 };
 
 export default App;

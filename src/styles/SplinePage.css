@@ -1,0 +1,109 @@
+/* Full-screen container */
+.spline-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f2f5f4, #f2f5f4); /* Subtle gradient */
+  color: blue;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Left text section */
+.welcome-text {
+  margin-left: 50px;
+  z-index: 10; /* Ensure it stays on top of the Spline scene */
+  text-shadow: 0 4px 6px rgba(37, 4, 255, 0.5);
+}
+
+.welcome-header {
+  font-size: 3rem;
+  margin: 0;
+  opacity: 0.9;
+  color: blue;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.animated-title {
+  display: inline-flex; /* Ensures the characters stay in a single line */
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+}
+
+.animated-title span {
+  display: inline-block;
+  font-size: 4rem;
+  font-weight: 800;
+  color: greenyellow;
+  text-shadow: 0 0 10px darkgreen, 0 0 20px yellow;
+  animation: slide-in 0.5s ease-in-out forwards, glow 1.5s infinite alternate;
+  opacity: 0;
+  margin-right: 2px; /* Add slight spacing between letters */
+}
+
+/* Small thin line with click instruction */
+.click-line {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(74, 184, 220);
+  border-top: 2px solid rgba(236, 24, 24, 0.5); /* Thin line */
+  padding-top: 10px;
+  text-align: center;
+  max-width: 250px;
+}
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;
+  }
+  100% {
+    text-shadow: 0 0 20px #ff6347, 0 0 40px #ff4500, 0 0 50px #ff6347;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Spline scene */
+.spline-scene {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .animated-title span {
+    font-size: 3rem;
+  }
+
+  .click-line {
+    font-size: 1rem;
+    max-width: 200px;
+  }
+}
