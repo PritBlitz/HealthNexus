@@ -1,4 +1,4 @@
-# HealthNexus: AI-Powered Skin Disease Detection:
+# HealthNexus
 
 ## **HealthNexus** is an advanced AI-based web application designed to analyze images of skin conditions and determine whether they indicate the presence of skin cancer . Built using TensorFlow and flask, the project leverages cutting-edge machine learning and optimized inference to provide fast and accurate results.
 
