@@ -45,7 +45,7 @@ This project is a collaborative effort of four contributors passionate about lev
 ---
 
 ## Contributors:
-- Pritish Biswas [GitHub](#Github)
-- Tushar Kumar [GitHub](#)
-- Ayush Kumar [](#)
-- Ayush K Tripathi [](#)
+- Pritish Biswas [(GitHub)](#https://github.com/PritBlitz)
+- Tushar Kumar [(GitHub)](#https://github.com/kumartushar0605)
+- Ayush Kumar [(GitHub)](#https://github.com/ayushkumar1991)
+- Ayush K Tripathi [(GitHub)](#https://github.com/Alatus01)
