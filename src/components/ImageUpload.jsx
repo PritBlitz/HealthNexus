@@ -24,9 +24,35 @@ const ImageUpload = ({ onUpload }) => {
     }
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (preview) {
-      onUpload(preview);
+      const formData = new FormData();
+      const fileInput = document.querySelector('input[type="file"]');
+      formData.append("file", fileInput.files[0]);
+
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/predict",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        const data = response.data;
+        if (data.category && data.confidence !== undefined) {
+          alert(
+            `Prediction: ${data.category}\nConfidence: ${data.confidence}%`
+          );
+        } else {
+          alert("Error in prediction. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error during prediction:", error);
+        alert("Failed to connect to the backend. Please try again later.");
+      }
     } else {
       alert("Please select an image to upload.");
     }
