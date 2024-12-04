@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { Button, Box, Typography, TextField } from "@mui/material";
+import { Button, Box, Typography, TextField, Dialog, DialogActions, DialogContent, DialogTitle, CircularProgress } from "@mui/material";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+
+// Registering necessary chart components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
 
@@ -9,6 +14,9 @@ const ImageUpload = ({ onUpload }) => {
   const [preview, setPreview] = useState(null);
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
+  const [predictionData, setPredictionData] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);  // State for controlling dialog visibility
+  const [isLoading, setIsLoading] = useState(false);    // State to manage loading state
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -30,6 +38,9 @@ const ImageUpload = ({ onUpload }) => {
       const fileInput = document.querySelector('input[type="file"]');
       formData.append("file", fileInput.files[0]);
 
+      setOpenDialog(true);  // Open the dialog immediately
+      setIsLoading(true);   // Show loading spinner
+
       try {
         const response = await axios.post(
           "http://localhost:5000/predict",
@@ -43,15 +54,18 @@ const ImageUpload = ({ onUpload }) => {
 
         const data = response.data;
         if (data.category && data.confidence !== undefined) {
-          alert(
-            `Prediction: ${data.category}\nConfidence: ${data.confidence}%`
-          );
+          setPredictionData({
+            category: data.category,
+            confidence: data.confidence,
+          });
         } else {
           alert("Error in prediction. Please try again.");
         }
       } catch (error) {
         console.error("Error during prediction:", error);
         alert("Failed to connect to the backend. Please try again later.");
+      } finally {
+        setIsLoading(false);  // Hide loading spinner when request finishes
       }
     } else {
       alert("Please select an image to upload.");
@@ -71,7 +85,7 @@ const ImageUpload = ({ onUpload }) => {
           {
             headers: {
               Authorization:
-                "Bearer sk-proj-THWbKZCbhwzch-bVay5-Omn1KKwfnDxhyE3W3rJAJumA8zMD2CXu1p2AmYJpl7i5T0u3d_-DEFT3BlbkFJLvqrT6vZATG2TfEK64dLAjdF1twF3BCcQs_X8_SjInUPe1gplpCkKYiY9Splt1adQI5YLUFLI",
+                "Bearer YOUR_API_KEY",
               "Content-Type": "application/json",
             },
           }
@@ -88,6 +102,27 @@ const ImageUpload = ({ onUpload }) => {
     } else {
       alert("Please enter a query.");
     }
+  };
+
+  // Chart data for disease prediction
+  const chartData = predictionData
+    ? {
+        labels: [predictionData.category],
+        datasets: [
+          {
+            label: "Confidence Level",
+            data: [predictionData.confidence],
+            backgroundColor: predictionData.confidence > 75 ? "green" : predictionData.confidence > 50 ? "yellow" : "red",
+            borderColor: "black",
+            borderWidth: 1,
+          },
+        ],
+      }
+    : null;
+
+  // Close dialog handler
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -207,6 +242,50 @@ const ImageUpload = ({ onUpload }) => {
           </Typography>
         )}
       </Box>
+
+      {/* Dialog for Disease Prediction Chart */}
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle sx={{ backgroundColor: "#1e88e5", color: "#fff" }}>Prediction Confidence</DialogTitle>
+        <DialogContent sx={{ minWidth: "300px", maxWidth: "400px", padding: "20px", backgroundColor: "#f4f4f9" }}>
+          {isLoading ? (
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "200px" }}>
+              <CircularProgress />
+              <Typography sx={{ marginLeft: 2 }}>Loading prediction...</Typography>
+            </Box>
+          ) : predictionData && chartData ? (
+            <Box>
+              <Bar
+                data={chartData}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "Disease Category Confidence",
+                      font: { size: 16 },
+                    },
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      max: 100,
+                    },
+                  },
+                }}
+              />
+            </Box>
+          ) : (
+            <Typography sx={{ textAlign: "center" }}>
+              No data available. Please upload an image to get a prediction.
+            </Typography>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} sx={{ color: "#1e88e5" }}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

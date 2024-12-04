@@ -19,11 +19,58 @@ const UploadPage = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        // Health-themed gradient background
-        background: "linear-gradient(135deg, #48c78e, #3cb371)",
+        position: "relative", 
         overflow: "hidden",
       }}
     >
+      {/* Background Pulse Animation */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1, 
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          pointerEvents: "none", 
+        }}
+      >
+        {/* Pulse Circles */}
+        <Box
+          sx={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            borderRadius: "50%",
+            background: "rgba(0, 255, 85, 0.2)",
+            animation: "pulseAnimation 3s infinite ease-out",
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            width: "80%",
+            height: "80%",
+            borderRadius: "50%",
+            background: "rgba(0, 255, 85, 0.4)",
+            animation: "pulseAnimation 4s infinite ease-out",
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            width: "60%",
+            height: "60%",
+            borderRadius: "50%",
+            background: "rgba(0, 255, 85, 0.6)",
+            animation: "pulseAnimation 5s infinite ease-out",
+          }}
+        />
+      </Box>
+
       <Header />
 
       <Box
@@ -57,7 +104,7 @@ const UploadPage = () => {
           <Typography
             variant="body1"
             sx={{
-              color: "#e0f7fa",
+              color: "#ffffff",
               fontFamily: "'Lato', sans-serif",
               fontSize: "1.1rem",
               mt: 3,
@@ -115,6 +162,7 @@ const UploadPage = () => {
                 borderRadius: "10px",
                 border: "3px solid #48c78e",
                 boxShadow: "0px 6px 12px rgba(48, 147, 106, 0.5)",
+                animation: "pulse 1.5s infinite ease-in-out",
               }}
             />
           </motion.div>
